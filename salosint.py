@@ -1,7 +1,6 @@
 import os
 import time
 import signal
-import webbrowser
 
 # Menangani keyboard interruption (Ctrl+C)
 def signal_handler(signal, frame):
@@ -44,7 +43,7 @@ def main_menu():
         "1": search_by_name,
         "2": search_by_phone,
         "3": search_by_ip,
-        "99": lambda: open_url('https://github.com/SalvadorXploitiji')
+        "99": lambda: print("\n\033[1;34mTentang SALX OSINT: https://github.com/SalvadorXploitiji\033[1;m\n")
     }
     
     if option in menu_actions:
@@ -54,11 +53,10 @@ def main_menu():
         time.sleep(2)
         main_menu()
 
-# Membuka URL di browser
-def open_url(url):
-    clear_screen()
-    webbrowser.open(url)
-    time.sleep(2)
+# Fungsi untuk menampilkan link di terminal
+def show_link(url):
+    print(f"\n\033[1;34m[INFO] Buka link ini di browser:\n {url}\033[1;m\n")
+    input("\033[1;32mTekan Enter untuk kembali ke menu utama...\033[1;m")
     main_menu()
 
 # Fungsi untuk pencarian nama
@@ -74,8 +72,7 @@ def search_by_name():
         "2": f"https://www.facebook.com/search/top/?init=quick&q={name} {f_name}",
         "3": f"https://www.spokeo.com/{name}-{f_name}",
         "4": f"https://www.peekyou.com/{name}_{f_name}",
-        "5": f"https://twitter.com/search?f=users&vertical=default&q={name} {f_name}",
-        "99": "https://github.com/SalvadorXploitiji"
+        "5": f"https://twitter.com/search?f=users&vertical=default&q={name} {f_name}"
     }
     
     print("""
@@ -84,13 +81,12 @@ def search_by_name():
  3. Spokeo  
  4. Peekyou  
  5. Twitter  
- 99. Tentang SALX OSINT
     """)
     
     choice = input("\033[1;35m Pilih opsi:\033[1;m ")
     
     if choice in search_sites:
-        open_url(search_sites[choice])
+        show_link(search_sites[choice])
     else:
         print("\033[1;31m[ERROR]\033[1;m Pilihan tidak valid!")
         time.sleep(2)
@@ -108,8 +104,7 @@ def search_by_phone():
         "2": f"https://www.facebook.com/search/top/?init=quick&q={phone_number}",
         "3": f"https://www.truecaller.com/search/global/{phone_number}",
         "4": f"https://www.whitepages.com/phone/{phone_number}",
-        "5": f"https://www.pagesjaunes.fr/annuaireinverse/recherche?quoiqui={phone_number}",
-        "99": "https://github.com/SALX-OSINT"
+        "5": f"https://www.pagesjaunes.fr/annuaireinverse/recherche?quoiqui={phone_number}"
     }
 
     print("""
@@ -118,13 +113,12 @@ def search_by_phone():
  3. TrueCaller  
  4. Whitepages  
  5. PagesJaunes  
- 99. Tentang SALX OSINT
     """)
     
     choice = input("\033[1;35m Pilih opsi:\033[1;m ")
     
     if choice in search_sites:
-        open_url(search_sites[choice])
+        show_link(search_sites[choice])
     else:
         print("\033[1;31m[ERROR]\033[1;m Pilihan tidak valid!")
         time.sleep(2)
@@ -142,8 +136,7 @@ def search_by_ip():
         "2": f"https://whatismyipaddress.com/ip/{ip_address}",
         "3": f"https://www.shodan.io/host/{ip_address}",
         "4": f"https://www.virustotal.com/gui/ip-address/{ip_address}",
-        "5": f"https://who.is/whois-ip/ip-address/{ip_address}",
-        "99": "https://github.com/SalvadorXploitiji"
+        "5": f"https://who.is/whois-ip/ip-address/{ip_address}"
     }
 
     print("""
@@ -152,13 +145,12 @@ def search_by_ip():
  3. Shodan  
  4. VirusTotal  
  5. Whois Lookup  
- 99. Tentang SALX OSINT
     """)
     
     choice = input("\033[1;35m Pilih opsi:\033[1;m ")
     
     if choice in search_sites:
-        open_url(search_sites[choice])
+        show_link(search_sites[choice])
     else:
         print("\033[1;31m[ERROR]\033[1;m Pilihan tidak valid!")
         time.sleep(2)
